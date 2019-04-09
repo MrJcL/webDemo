@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.dao.sec.user.SecUserDao">
+
+    <insert id="insert" parameterType="com.jc.model.sec.user.SecUserModel">
+      INSERT INTO sec_user(user_id,user_name,login_id,pass_word,mobile,org_id,create_time,create_user_id,create_user_name,update_time,update_user_id,update_user_name)
+      VALUES (#{userId},#{userName},#{loginId},#{passWord},#{mobile},#{orgId},#{createTime},#{createUserId},#{createUserName},#{updateTime},#{updateUserId},#{updateUserName})
+    </insert>
+
+    <select id="selectSecUserModels" resultType="com.jc.model.sec.user.SecUserModel">
+        SELECT * FROM sec_user
+    </select>
+
+    <select id="selectUsersToMap" resultType="java.util.HashMap">
+        SELECT * FROM sec_user
+    </select>
+
+    <select id="getSecUserModel" parameterType="java.lang.String" resultType="com.jc.model.sec.user.SecUserModel">
+        SELECT * FROM sec_user WHERE user_id = #{userId}
+    </select>
+</mapper>

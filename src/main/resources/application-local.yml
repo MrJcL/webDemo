@@ -1,0 +1,80 @@
+# 配置tomcat
+server:
+  port: 8088
+  servlet:
+   context-path: /springboot
+
+# JDBC
+spring:
+  datasource:
+    name: my_datasource
+    # 数据源类型：Druid
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    platform: mysql
+    url: jdbc:mysql://127.0.0.1:3306/springboot?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    # 配置Druid的其他参数，以下配置必须增加一个配置文件才能有效 DruidConfig.java
+    # 初始化大小，最小，最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    # 获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall
+
+  #"关闭缓存, 即时刷新"
+#  freemarker:
+#    cache: false
+#  thymeleaf:
+#    cache: true  #如果开启此处会导致每次输入删除都会自动刷新哪怕你没保存
+
+  #热部署生效
+  devtools:
+    restart:
+      enabled: true
+  #设置重启的目录,添加那个目录的文件需要restart
+      additional-paths: src/main/java
+      restart.exclude: WEB-INF/**
+
+  #注意：同时使用html和jsp需要配置视图解析器 ViewResolverConfiguration.java
+  # springMvc配置
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/views/
+#      suffix: .jsp
+#      order: 2
+#      view-name: jsp/*
+
+  # thymeleaf配置 不配置默认读取resource下的templates的html 需注释spring-mvc的配置
+#  thymeleaf:
+#    prefix: /WEB-INF/views/html/
+#    suffix: .html
+#    mode: HTML5
+#    encoding: UTF-8
+#    servlet:
+#      content-type: text/html
+#    cache: false #开发时关闭缓存,不然没法看到实时页面
+
+# 设置mybatis,该配置节点为独立的节点
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: com.jc.model  # 注意：对应实体类的路径
+  # 设置驼峰命名
+  configuration:
+    mapUnderscoreToCamelCase: true
+
+# 打印sql
+#logging:
+#  level:
+#    com.jc.dao.sec.user: DEBUG

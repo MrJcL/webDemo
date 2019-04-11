@@ -46,7 +46,13 @@ spring:
   #设置重启的目录,添加那个目录的文件需要restart
       additional-paths: src/main/java
       restart.exclude: WEB-INF/**
-
+  #在使用 DevTools 时，通用Mapper经常会出现 class x.x.A cannot be cast to x.x.A解决方法
+  #EmptyProvider中缺少selectOne方法!需要添加companycommonlibs: tk/mybatis.*
+  restart:
+    include:
+      mapper: /mapper-[\\w-\\.]+jar
+      pagehelper: /pagehelper-[\\w-\\.]+jar
+      companycommonlibs: tk/mybatis.*
   #注意：同时使用html和jsp需要配置视图解析器 ViewResolverConfiguration.java
   # springMvc配置
 #  mvc:
@@ -73,8 +79,13 @@ mybatis:
   # 设置驼峰命名
   configuration:
     mapUnderscoreToCamelCase: true
-
+# 设置通用mapper
+mapper:
+  mappers:
+    - com.jc.util.MyMapper
+  not-empty: false
+  identity: MYSQL
 # 打印sql
-#logging:
-#  level:
-#    com.jc.dao.sec.user: DEBUG
+logging:
+  level:
+    com.jc.dao.sec.user: DEBUG

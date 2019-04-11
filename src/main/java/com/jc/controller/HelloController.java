@@ -24,7 +24,7 @@ public class HelloController {
     }
 
     @GetMapping("/demo1")
-    public String demo1(){
+    public String demo1(String name){
         return "demo";
     }
 

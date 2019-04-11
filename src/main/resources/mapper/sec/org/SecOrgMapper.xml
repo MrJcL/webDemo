@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jc.mapper.sec.org.SecOrgMapper">
+  <resultMap id="BaseResultMap" type="com.jc.model.sec.org.SecOrg">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="org_id" jdbcType="VARCHAR" property="orgId" />
+    <result column="org_name" jdbcType="VARCHAR" property="orgName" />
+    <result column="org_code" jdbcType="VARCHAR" property="orgCode" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="order_no" jdbcType="INTEGER" property="orderNo" />
+    <result column="record_status" jdbcType="VARCHAR" property="recordStatus" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user_id" jdbcType="VARCHAR" property="updateUserId" />
+    <result column="update_user_name" jdbcType="VARCHAR" property="updateUserName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+</mapper>

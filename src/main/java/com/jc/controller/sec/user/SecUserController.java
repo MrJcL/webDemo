@@ -46,8 +46,8 @@ public class SecUserController {
      * @return
      */
     @PostMapping("/createUser")
-    @ApiOperation(value="创建用户", notes="创建用户")
-    public boolean createUser(SecUserModel SecUserModel) {
+    @ApiOperation(value="创建用户", notes="创建用户" ,produces = "application/xml,application/json")
+    public boolean createUser(@RequestBody SecUserModel SecUserModel) {
         return this.secUserService.crateUser(SecUserModel);
     }
 

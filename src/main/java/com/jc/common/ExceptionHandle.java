@@ -20,7 +20,7 @@ public class ExceptionHandle {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Result defaultErrorHandle(Exception e){
-        logger.error("【系统异常】{}",e.getMessage());
+        logger.error("【系统异常】{}",e);
         return Result.errorMsg(e.getMessage());
     }
 }

@@ -48,11 +48,11 @@ spring:
       restart.exclude: WEB-INF/**
   #在使用 DevTools 时，通用Mapper经常会出现 class x.x.A cannot be cast to x.x.A解决方法
   #EmptyProvider中缺少selectOne方法!需要添加companycommonlibs: tk/mybatis.*
-  restart:
-    include:
-      mapper: /mapper-[\\w-\\.]+jar
-      pagehelper: /pagehelper-[\\w-\\.]+jar
-      companycommonlibs: tk/mybatis.*
+restart:
+  include:
+    mapper: /mapper-[\\w-\\.]+jar
+    pagehelper: /pagehelper-[\\w-\\.]+jar
+    companycommonlibs: tk/mybatis.*
   #注意：同时使用html和jsp需要配置视图解析器 ViewResolverConfiguration.java
   # springMvc配置
 #  mvc:

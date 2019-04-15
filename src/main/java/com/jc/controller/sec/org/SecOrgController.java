@@ -19,17 +19,17 @@ public class SecOrgController {
     @Autowired
     private ISecOrgService secOrgService;
 
-    @PostMapping("create")
+    @PostMapping
     public ResultEntity createSecOrg(@RequestBody SecOrg secOrg){
        return this.secOrgService.createSecOrg(secOrg);
     }
 
-    @PostMapping("update")
+    @PatchMapping
     public ResultEntity updateSecOrg(@RequestBody SecOrg secOrg){
         return this.secOrgService.updateSecOrg(secOrg);
     }
 
-    @GetMapping("getSecOrg")
+    @GetMapping
     public ResultEntity getSecOrg(String orgId){
         return this.secOrgService.getSecOrg(orgId);
     }
@@ -37,5 +37,10 @@ public class SecOrgController {
     @GetMapping("querySecOrgAll")
     public ResultEntity querySecOrgAll(){
         return this.secOrgService.querySecOrgAll();
+    }
+
+    @DeleteMapping("delete")
+    public ResultEntity deleteSecOrg(String orgId){
+        return this.secOrgService.deleteSecOrg(orgId);
     }
 }

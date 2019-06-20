@@ -34,10 +34,16 @@ public interface ISecOrgService {
      */
     public ResultEntity<SecOrg> getSecOrg(String orgId);
 
-
     /**
      * 获取所有
      * @return
      */
     public ResultEntity<List<SecOrg>> querySecOrgAll();
+
+    /**
+     * 删除
+     * @param orgId
+     * @return
+     */
+    public ResultEntity deleteSecOrg(String orgId);
 }

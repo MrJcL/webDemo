@@ -1,7 +1,9 @@
 package com.jc.model.sec.org;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "sec_org")
 public class SecOrg {
@@ -45,19 +47,19 @@ public class SecOrg {
     /**
      * 创建人id
      */
-    @Column(name = "create_user_id")
+    @Column(name = "create_user_id", updatable = false)
     private String createUserId;
 
     /**
      * 创建人名称
      */
-    @Column(name = "create_user_name")
+    @Column(name = "create_user_name", updatable = false)
     private String createUserName;
 
     /**
      * 创建时间
      */
-    @Column(name = "create_time")
+    @Column(name = "create_time", updatable = false)
     private Date createTime;
 
     /**

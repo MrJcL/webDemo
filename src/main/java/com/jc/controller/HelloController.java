@@ -2,10 +2,13 @@ package com.jc.controller;
 
 import com.jc.common.Result;
 import com.jc.iservice.sec.HelloService;
+import com.jc.model.sec.user.SecUserModel;
 import com.jc.service.sec.org.SecOrgService;
+import com.jc.util.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -86,5 +89,26 @@ public class HelloController {
     public Result redisTest1(){
         this.stringRedisTemplate.opsForValue().set("name", "老王");
         return Result.ok(this.stringRedisTemplate.opsForValue().get("name"));
+    }
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+    @GetMapping("/redisTest2")
+    public Result redisTest2(){
+        SecUserModel secUserModel = new SecUserModel();
+        secUserModel.setUserName("老王");
+        // 增加自定义redis配置类RedisConfig作序列化;如直接使用model需将model类实现Serializable接口
+        this.redisTemplate.opsForValue().set("secUserModel", secUserModel);
+        return Result.ok(this.redisTemplate.opsForValue().get("secUserModel"));
+    }
+
+    @Autowired
+    private RedisUtil redisUtil;
+    @GetMapping("/redisTest3")
+    public Result redisTest3(){
+        SecUserModel secUserModel = new SecUserModel();
+        secUserModel.setUserName("老张");
+        this.redisUtil.set("lz", secUserModel, 100000);
+        return Result.ok(this.redisUtil.get("lz"));
     }
 }
